@@ -1,0 +1,28 @@
+.home-bill-detail-card {
+    padding: 20px;
+    margin-bottom: 20px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.2);
+    display: flex;
+    align-items: center;
+}
+
+.home-bill-detail-card p {
+    width: 25%;
+}
+
+.home-bill-detail-card .btn-wrapper {
+    width: 25%;
+    display: flex;
+    justify-content: center;
+}
+
+.home-bill-detail-card .get-detail-btn {
+    background-color: #113dcd;
+    padding: 10px 20px;
+    outline: none;
+    color: #fff;
+    border-radius: 8px;
+    cursor: pointer;
+}
