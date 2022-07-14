@@ -6,7 +6,7 @@ import "./HomePage.css"
 const HomePage = () => {
     const [data, setData] = useState([])
     useEffect(() => {
-        axios.get("/api")
+        axios.get("/bill")
             .then((res) => {
                 setData(res.data)
             })
@@ -17,25 +17,19 @@ const HomePage = () => {
 
     return (
         <div className='container'>
-            <div className='home-bill-detail-card'>
-                <p className='month'>July 2020</p>
-                <p className='bill'>1,000</p>
-                <p className='status'>paid</p>
-                <div className='btn-wrapper'>
-                    <button className='get-detail-btn'>Get Detail</button>
-                </div>
-            </div>
-
             {
-                data.length ?
-                    <div className='home-bill-detail-card'>
-                    <p className='month'>July 2020</p>
-                    <p className='bill'>1,000</p>
-                    <p className='status'>paid</p>
-                    <div className='btn-wrapper'>
-                        <button className='get-detail-btn'>Get Detail</button>
-                    </div>
-                </div> : ""
+                data.length ? data.map((el, index) => {
+                    return (
+                        <div key={index} className='home-bill-detail-card'>
+                            <p className='month'>{el.month}</p>
+                            <p className='bill'>{el.amount}</p>
+                            <p className='status'>{el.status}</p>
+                            <div className='btn-wrapper'>
+                                <button className='get-detail-btn'>Get Detail</button>
+                            </div>
+                        </div>
+                    )
+                }) : ""
             }
         </div>
 
