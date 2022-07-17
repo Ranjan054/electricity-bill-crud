@@ -1,10 +1,17 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 import "./HomePage.css"
 
 
 const HomePage = () => {
-    const [data, setData] = useState([])
+    const [data, setData] = useState([]);
+    const navigate = useNavigate();
+
+    const clickHandler = (id) => {
+        navigate(`/bill/${id}`)
+    }
+
     useEffect(() => {
         axios.get("/bill")
             .then((res) => {
@@ -13,6 +20,14 @@ const HomePage = () => {
             .catch((e) => {
                 console.log(e);
             })
+
+            // axios.post("/bill", {})
+            // .then((res) => {
+            //     setData(res.data)
+            // })
+            // .catch((e) => {
+            //     console.log(e);
+            // })
     }, [])
 
     return (
@@ -25,7 +40,7 @@ const HomePage = () => {
                             <p className='bill'>{el.amount}</p>
                             <p className='status'>{el.status}</p>
                             <div className='btn-wrapper'>
-                                <button className='get-detail-btn'>Get Detail</button>
+                                <button onClick={() => clickHandler(el._id)} className='get-detail-btn'>Get Detail</button>
                             </div>
                         </div>
                     )

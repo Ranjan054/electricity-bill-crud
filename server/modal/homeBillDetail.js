@@ -1,8 +1,12 @@
 const mongoose = require('mongoose');
 
 const BillSchema = new mongoose.Schema({
+  name: String,
+  unit: String,
+  address: String,
   month: String,
-  amount: Number,
+  amount: String,
+  customerId: Number,
   status: String,
 }, { collection: 'HomeBIllDetail' });
 
