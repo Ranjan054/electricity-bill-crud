@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from "react-router-dom";
 import "./HomePage.css"
+import Spinner from '../Spinner/Spinner';
 
 
 const HomePage = () => {
@@ -12,23 +13,26 @@ const HomePage = () => {
         navigate(`/bill/${id}`)
     }
 
-    useEffect(() => {
-        axios.get("/bill")
+    const createBill = () => {
+        axios.post("/bill", {})
             .then((res) => {
-                setData(res.data)
+                console.log(res.data);
             })
             .catch((e) => {
                 console.log(e);
             })
+    }
 
-            // axios.post("/bill", {})
-            // .then((res) => {
-            //     setData(res.data)
-            // })
-            // .catch((e) => {
-            //     console.log(e);
-            // })
-    }, [])
+    useEffect(() => {
+        axios.get("/bill")
+            .then((res) => {
+                setData(res.data)
+                if (res.data.length < 5) createBill();
+            })
+            .catch((e) => {
+                console.log(e);
+            })
+    }, []);
 
     return (
         <div className='container'>
@@ -44,11 +48,11 @@ const HomePage = () => {
                             </div>
                         </div>
                     )
-                }) : ""
+                }) : <Spinner />
             }
         </div>
 
-    )
+    );
 }
 
 export default HomePage

@@ -13,8 +13,6 @@ function App() {
       <Routes>
         <Route path="/" element={<HomePage />} />
         <Route path="bill/:id" element={<BillDetail />} />
-        {/* <Route path="addBill" element={<Contact />} /> */}
-        {/* <Route path="/:id/edit" element={<Contact />} /> */}
       </Routes>
     <Footer />
 
